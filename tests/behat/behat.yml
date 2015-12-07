@@ -1,0 +1,10 @@
+default:
+
+    suites:
+
+        integrationtesting:
+            paths:
+                features: %paths.base%/feature_files/
+            filters: { tags: ~wip }
+            contexts:
+                - \Sainsburys\Hara\Xxxxxx\Test\IntegrationTesting\SmokeTestContext
