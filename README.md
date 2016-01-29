@@ -15,10 +15,8 @@ When you have created a new repository for your service do the following :
 
 
 
-Tip: To remove the from the files XXXXXX use the following commands
+Tip: To remove the from the files XXXXXX use the following command
 
-`perl -p -i -e 's/Xxxxxx/Myservice/g' `grep -Rl --exclude-dir=./.git 'Xxxxxx' .``
-
-`perl -p -i -e 's/xxxxxx/myservice/g' `grep -Rl --exclude-dir=./.git 'xxxxxx' .``
+``perl -p -i -e 's/Xxxxxx/Myservice/gi' `grep -Rli --exclude-dir=./.git 'Xxxxxx' . ` ``
 
 Don't forget to *change manually the directories* named Xxxxx
