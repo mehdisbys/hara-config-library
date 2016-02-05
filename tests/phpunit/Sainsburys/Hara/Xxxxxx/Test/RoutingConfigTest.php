@@ -21,10 +21,20 @@ class RoutingConfigTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    public function testSmokeTestRouteExists()
+    /**
+     * @dataProvider provideRoutes
+     */
+    public function testRoutesExist(string $method, string $routeId)
     {
-        $this->assertArrayHasKey('smoke-test', $this->routing);
-        $this->assertArrayHasKey('http-verb', $this->routing['smoke-test']);
-        $this->assertEquals('GET', $this->routing['smoke-test']['http-verb']);
+        $this->assertArrayHasKey($routeId, $this->routing);
+        $this->assertArrayHasKey('http-verb', $this->routing[$routeId]);
+        $this->assertEquals($method, $this->routing[$routeId]['http-verb']);
+    }
+
+    public function provideRoutes()
+    {
+        return [
+            ['GET', 'smoke-test'],
+        ];
     }
 }
