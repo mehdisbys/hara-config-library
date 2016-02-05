@@ -1,0 +1,17 @@
+suites:
+
+    src:
+        namespace:   Sainsburys\Hara\Xxxxxx
+        spec_prefix: SainsburysHaraSpec
+        src_path:    src/
+        spec_path:   tests/phpspec/
+
+extensions:
+    - PhpSpec\Extension\CodeCoverageExtension
+
+code_coverage:
+    format:
+        - html
+    output:
+        html: tests/coverage/html
+
