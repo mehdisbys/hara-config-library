@@ -2,6 +2,7 @@
 namespace Sainsburys\Hara\Xxxxxx\Test;
 
 use UltraLite\Container\Container;
+use Sainsburys\Hara\Xxxxxx\Controller\SmokeTestController;
 
 class DiConfigTest extends \PHPUnit_Framework_TestCase
 {
@@ -14,10 +15,19 @@ class DiConfigTest extends \PHPUnit_Framework_TestCase
         $this->diContainer->configureFromFile(APPLICATION_ROOT_DIR . '/config/di.php');
     }
 
-    public function testSmokeTestControllerIsRetrievable()
+    /**
+     * @dataProvider provideControllers
+     */
+    public function testControllersAreAvailable(string $serviceId, string $expectedClass)
     {
-        $expectedClass = '\Sainsburys\Hara\Xxxxxx\Controller\SmokeTestController';
-        $result = $this->diContainer->get('sainsburys.hara.xxxxxx.controllers.smoketest');
+        $result = $this->diContainer->get($serviceId);
         $this->assertInstanceOf($expectedClass, $result);
+    }
+
+    public function provideControllers()
+    {
+        return [
+            ['sainsburys.hara.xxxxxx.controllers.smoketest', SmokeTestController::class],
+        ];
     }
 }
