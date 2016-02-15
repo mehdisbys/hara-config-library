@@ -50,7 +50,7 @@ class FakeConfigContext implements Context, SnippetAcceptingContext
     /**
      * @Then I should get the value :expectedSettingValue
      */
-    public function iShouldGetTheValue($expectedSettingValue)
+    public function iShouldGetTheValue(string $expectedSettingValue)
     {
         throw new PendingException();
     }
