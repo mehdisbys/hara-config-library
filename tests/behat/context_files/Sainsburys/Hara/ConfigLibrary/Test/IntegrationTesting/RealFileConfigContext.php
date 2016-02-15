@@ -6,6 +6,7 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Tester\Exception\PendingException;
 use Sainsburys\Hara\ConfigLibrary\Config\SecretConfigFile;
 use Sainsburys\Hara\ConfigLibrary\Exception\RequiredConfigSettingNotFound;
+use Sainsburys\Hara\ConfigLibrary\Misc\IniFileParser;
 
 class RealFileConfigContext implements Context, SnippetAcceptingContext
 {
@@ -23,7 +24,8 @@ class RealFileConfigContext implements Context, SnippetAcceptingContext
      */
     public function theConfigLibraryIsInitialisedWithTheFile(string $filename)
     {
-        $this->secretConfigFile = new SecretConfigFile($filename);
+        $iniFileParser = new IniFileParser();
+        $this->secretConfigFile = new SecretConfigFile($filename, $iniFileParser);
     }
 
     /**
