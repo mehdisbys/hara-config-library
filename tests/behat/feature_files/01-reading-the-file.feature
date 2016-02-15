@@ -5,7 +5,7 @@ Feature: Getting stuff out of the config file
 
     Background:
         Given the config library is initialised with the file 'tests/fixtures/example-config-file.ini'
-    @wip
+
     Scenario: Getting a simple setting
         When I get the setting 'REDIS_ENDPOINT'
         Then I should get the value 'localhost'

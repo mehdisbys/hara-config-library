@@ -1,7 +1,7 @@
 <?php
 namespace Sainsburys\Hara\ConfigLibrary\Misc;
 
-class IniFileParser
+class IniFileParser implements IniFileParserInterface
 {
     public function parseIniFile(string $path): array
     {

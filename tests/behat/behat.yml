@@ -4,14 +4,14 @@ default:
 
         realfileconfig:
             paths:
-                features: %paths.base%/feature_files/
+                features: %paths.base%/feature_files/01-reading-the-file.feature
             filters: { tags: ~wip }
             contexts:
                 - \Sainsburys\Hara\ConfigLibrary\Test\IntegrationTesting\RealFileConfigContext
 
         fakeconfig:
             paths:
-                features: %paths.base%/feature_files/
+                features: %paths.base%/feature_files/02-using-a-fake-config-object.feature
             filters: { tags: ~wip }
             contexts:
                 - \Sainsburys\Hara\ConfigLibrary\Test\IntegrationTesting\FakeConfigContext
