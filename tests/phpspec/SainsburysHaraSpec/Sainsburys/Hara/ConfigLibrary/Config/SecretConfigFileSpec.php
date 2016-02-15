@@ -4,6 +4,7 @@ namespace SainsburysHaraSpec\Sainsburys\Hara\ConfigLibrary\Config;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Sainsburys\Hara\ConfigLibrary\Config;
 use Sainsburys\Hara\ConfigLibrary\Exception\RequiredConfigSettingNotFound;
 use Sainsburys\Hara\ConfigLibrary\Misc\IniFileParserInterface;
 use Sainsburys\Hara\ConfigLibrary\Config\SecretConfigFile;
@@ -28,9 +29,9 @@ class SecretConfigFileSpec extends ObjectBehavior
         );
     }
 
-    function it_is_initializable()
+    function it_is_a_config_object()
     {
-        $this->shouldHaveType('Sainsburys\Hara\ConfigLibrary\Config\SecretConfigFile');
+        $this->shouldHaveType(Config::class);
     }
 
     function it_can_get_a_setting()

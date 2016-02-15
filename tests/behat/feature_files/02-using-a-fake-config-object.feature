@@ -2,7 +2,7 @@ Feature: Mocking the config file for unit tests
     In order to test client code relying on the library
     As a developer building testing a service which uses the config library
     I want to inject values into a fake config object and have it behave like a real one
-    @wip
+
     Scenario: Faking a simple setting
         Given I have injected the setting 'REDIS_ENDPOINT' with the value 'fake-redis-server.com'
         When I get the setting 'REDIS_ENDPOINT'
