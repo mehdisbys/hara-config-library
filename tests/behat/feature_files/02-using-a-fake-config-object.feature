@@ -7,7 +7,7 @@ Feature: Mocking the config file for unit tests
         Given I have injected the setting 'REDIS_ENDPOINT' with the value 'fake-redis-server.com'
         When I get the setting 'REDIS_ENDPOINT'
         Then I should get the value 'fake-redis-server.com'
-    @wip
+
     Scenario: Getting a setting that doesn't exist
         When I try to get the setting 'THING_THAT_HASNT_BEEN_INJECTED'
         Then I should get a helpful error message
