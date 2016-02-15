@@ -8,8 +8,6 @@ at `/etc/.hara-env-vars`.
 
 ## Use in Production Code
 
-Construct in DI config using `buildSecretConfigFile()
-
 Use a `Sainsburys\Hara\ConfigLibrary\Config\SecretConfigFile` object.  The interface for the class you will be using
 contains this:
 
