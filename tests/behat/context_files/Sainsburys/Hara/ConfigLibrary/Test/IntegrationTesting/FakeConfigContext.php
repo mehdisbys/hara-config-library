@@ -51,16 +51,7 @@ class FakeConfigContext implements Context, SnippetAcceptingContext
      */
     public function iGetTheDnsForTheService(string $serviceNickname)
     {
-        $this->result = $this->secretConfigFile->dsnForService($serviceNickname);
-    }
-
-    /**
-     * @Given the config library is initialised with the file :filename
-     */
-    public function theConfigLibraryIsInitialisedWithTheFile(string $filename)
-    {
-        $iniFileParser = new IniFileParser();
-        $this->secretConfigFile = new SecretConfigFile($filename, $iniFileParser);
+        $this->result = $this->configObject->dsnForService($serviceNickname);
     }
 
     /**
@@ -104,7 +95,7 @@ class FakeConfigContext implements Context, SnippetAcceptingContext
      */
     public function iAskWhetherOrNotThisIsTheDevEnvironment()
     {
-        $this->result = $this->secretConfigFile->isDev();
+        $this->result = $this->configObject->isDev();
     }
 
     /**

@@ -28,4 +28,10 @@ class FakeConfigSpec extends ObjectBehavior
     {
         $this->shouldThrow(RequiredConfigSettingNotFound::class)->during('get', ['THING-THAT-DOESNT-EXIST']);
     }
+
+    function it_can_tell_whether_its_on_dev()
+    {
+        $this->setIsDev(true);
+        $this->isDev()->shouldBe(true);
+    }
 }

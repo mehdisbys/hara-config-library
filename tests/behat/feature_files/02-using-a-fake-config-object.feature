@@ -11,7 +11,7 @@ Feature: Mocking the config file for unit tests
     Scenario: Getting a setting that doesn't exist
         When I try to get the setting 'THING_THAT_HASNT_BEEN_INJECTED'
         Then I should get a helpful error message
-    @wip
+
     Scenario: Finding out whether we're on dev or not
         Given I have injected true as a value whether or not we're on dev
         When I ask whether or not this is the dev environment

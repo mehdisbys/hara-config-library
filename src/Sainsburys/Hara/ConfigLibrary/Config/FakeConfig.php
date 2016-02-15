@@ -6,7 +6,11 @@ use Sainsburys\Hara\ConfigLibrary\Exception\RequiredConfigSettingNotFound;
 
 class FakeConfig implements Config
 {
+    /** @var string[] */
     private $basicSettings = [];
+
+    /** @var bool */
+    private $isDevSetting;
 
     public function set(string $settingKey, string $settingValue)
     {
@@ -37,6 +41,14 @@ class FakeConfig implements Config
      */
     public function isDev(): bool
     {
+        if (!isset($this->isDevSetting)) {
+            throw RequiredConfigSettingNotFound::constructWithMethodCallRecommendation('setIsDev');
+        }
+        return $this->isDevSetting;
+    }
 
+    public function setIsDev(bool $valToSet)
+    {
+        $this->isDevSetting = $valToSet;
     }
 }
