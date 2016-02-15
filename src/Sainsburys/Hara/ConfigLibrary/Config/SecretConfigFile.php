@@ -1,6 +1,7 @@
 <?php
 namespace Sainsburys\Hara\ConfigLibrary\Config;
 
+use Sainsburys\Hara\ConfigLibrary\Exception\ConfigFileNotReadable;
 use Sainsburys\Hara\ConfigLibrary\Exception\RequiredConfigSettingNotFound;
 use Sainsburys\Hara\ConfigLibrary\Misc\IniFileParserInterface;
 
@@ -24,6 +25,9 @@ class SecretConfigFile
      */
     public function get(string $settingName): string
     {
+        if (!isset($this->fileContents()[$settingName])) {
+            throw RequiredConfigSettingNotFound::constructWithSettingKey($settingName);
+        }
         return $this->fileContents()[$settingName];
     }
 

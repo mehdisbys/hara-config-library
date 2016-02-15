@@ -9,7 +9,7 @@ Feature: Getting stuff out of the config file
     Scenario: Getting a simple setting
         When I get the setting 'REDIS_ENDPOINT'
         Then I should get the value 'localhost'
-    @wip
+
     Scenario: Getting a setting that doesn't exist
         When I try to get the setting 'THING_THAT_ISNT_IN_THE_FILE'
         Then I should get a helpful error message

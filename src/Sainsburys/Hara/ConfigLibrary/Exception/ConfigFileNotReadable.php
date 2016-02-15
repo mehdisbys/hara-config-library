@@ -1,7 +1,7 @@
 <?php
 namespace Sainsburys\Hara\ConfigLibrary\Exception;
 
-class ConfigFileNotReadable extends \RuntimeException
+class ConfigFileNotReadable extends \RuntimeException implements ConfigLibraryException
 {
 
 }
