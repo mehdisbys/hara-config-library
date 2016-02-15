@@ -16,7 +16,7 @@ Feature: Mocking the config file for unit tests
         Given I have injected true as a value whether or not we're on dev
         When I ask whether or not this is the dev environment
         Then I should get a response of true
-    @wip
+
     Scenario: Faking a Data Source Name
         Given I have injected the DSN 'sqlite:/tmp/sqlite.sq3'
         When I get the DNS for the service 'service-nickname'

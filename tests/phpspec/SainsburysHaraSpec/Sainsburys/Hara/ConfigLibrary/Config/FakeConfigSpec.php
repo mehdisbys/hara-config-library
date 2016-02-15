@@ -1,5 +1,4 @@
 <?php
-
 namespace SainsburysHaraSpec\Sainsburys\Hara\ConfigLibrary\Config;
 
 use PhpSpec\ObjectBehavior;
@@ -33,5 +32,11 @@ class FakeConfigSpec extends ObjectBehavior
     {
         $this->setIsDev(true);
         $this->isDev()->shouldBe(true);
+    }
+
+    function it_supports_getting_and_setting_a_dsn()
+    {
+        $this->setDsn('dsn-value');
+        $this->dsnForService('anything')->shouldBe('dsn-value');
     }
 }
