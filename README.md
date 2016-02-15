@@ -1,28 +1,32 @@
 (CI badges)
 
-# HARA XXXXXX Service
+# HARA Config Library
 
-[statement of what the service is for]
+Library for inclusion in all or most services.  Reads database passwords and other details out of the config file
+at `/etc/.hara-env-vars`.
 
-When you have created a new repository for your service do the following : 
+## Use in Production Code
 
-1. Add this repository to your origin : `git remote add template git@github.com:JSainsburyPLC/hara-be-service-template.git`
-2. `git pull template master`
-3. `git remote rm template`
-4. Replace all the config-library with the name you've decided - e.g. MyService
-5. Check it's all good
-6. `git push origin master`
+Use a `Sainsburys\Hara\ConfigLibrary\Config\SecretConfigFile` object.  The interface for the class you will be using
+contains this:
 
+```php
+public function get(string $settingName): string;
+public function dsnForService(string $serviceNickname): string;
+public function isDev(): bool;
+```
 
+The method `dsnForService()` returns Data Source Names, suitable for initialising PDO objects.
 
-Tip: To remove the from the files XXXXXX use the following command
+## Use in Test Automation
 
-``perl -p -i -e 's/ConfigLibrary/MyService/g' `grep -Rl --exclude-dir=.git 'ConfigLibrary' . ` ``
+Use a `Sainsburys\Hara\ConfigLibrary\Config\FakeConfig` object.  In addition implementing the above methods, it also
+has these:
 
-``perl -p -i -e 's/config-library/myService/g' `grep -Rl --exclude-dir=.git 'config-library' . ` ``
+```php
+public function set(string $settingKey, string $settingValue);
+public function setIsDev(bool $valToSet);
+public function setDsn(string $dsnToSet);
+```
 
-<sub>*(second one is for all lowercase instances...)</sub>
-
-Don't forget to *change manually the directories* named Xxxxx - or you can try
-
-``for d in $( find . -name ConfigLibrary ) ; do mv $d `echo $d | sed 's/Xx*$/MyService/g' ` ; done ``
+You should use these methods to inject fake values into the config object, before anything tries to get them out again.
