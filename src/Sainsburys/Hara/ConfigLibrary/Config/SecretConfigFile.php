@@ -16,15 +16,15 @@ class SecretConfigFile
     /**
      * @throws RequiredConfigSettingNotFound
      */
-    public function postgresDsn(string $serviceNickname): string
+    public function dsnForService(string $serviceNickname): string
     {
-
+        return 'pgsql:dbname=' . $database . ';host=' . $hostname . ';user='.$username . ';password=' . $password;
     }
 
     /**
      * @throws RequiredConfigSettingNotFound
      */
-    public function sqliteDsn(string $serviceNickname): string
+    public function isDev(): string
     {
 
     }

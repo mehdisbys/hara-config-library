@@ -13,10 +13,10 @@ interface Config
     /**
      * @throws RequiredConfigSettingNotFound
      */
-    public function postgresDsn(string $serviceNickname): string;
+    public function dsnForService(string $serviceNickname): string;
 
     /**
      * @throws RequiredConfigSettingNotFound
      */
-    public function sqliteDsn(string $serviceNickname): string;
+    public function isDev(): string;
 }
