@@ -4,39 +4,54 @@ namespace Sainsburys\Hara\ConfigLibrary\Test\IntegrationTesting;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Tester\Exception\PendingException;
+use Sainsburys\Hara\ConfigLibrary\Config\SecretConfigFile;
+use Sainsburys\Hara\ConfigLibrary\Exception\RequiredConfigSettingNotFound;
 
 class RealFileConfigContext implements Context, SnippetAcceptingContext
 {
+    /** @var SecretConfigFile */
+    private $secretConfigFile;
+
+    /** @var string */
+    private $result;
+
+    /** @var \Exception|null */
+    private $exceptionThrown;
+
     /**
-     * @Given the config library is initialised with the file :arg1
+     * @Given the config library is initialised with the file :filename
      */
-    public function theConfigLibraryIsInitialisedWithTheFile($arg1)
+    public function theConfigLibraryIsInitialisedWithTheFile(string $filename)
     {
-        throw new PendingException();
+        $this->secretConfigFile = new SecretConfigFile($filename);
     }
 
     /**
-     * @When I get the setting :arg1
+     * @When I get the setting :settingKey
      */
-    public function iGetTheSetting($arg1)
+    public function iGetTheSetting(string $settingKey)
     {
-        throw new PendingException();
+        $this->result = $this->secretConfigFile->get($settingKey);
     }
 
     /**
-     * @Then I should get the value :arg1
+     * @Then I should get the value :expectedValue
      */
-    public function iShouldGetTheValue($arg1)
+    public function iShouldGetTheValue(string $expectedValue)
     {
-        throw new PendingException();
+        \PHPUnit_Framework_Assert::assertEquals($expectedValue, $this->result);
     }
 
     /**
-     * @When I try to get the setting :arg1
+     * @When I try to get the setting :settingKey
      */
-    public function iTryToGetTheSetting($arg1)
+    public function iTryToGetTheSetting(string $settingKey)
     {
-        throw new PendingException();
+        try {
+            $this->secretConfigFile->get($settingKey);
+        } catch (\Throwable $exception) {
+            $this->exceptionThrown = $exception;
+        }
     }
 
     /**
@@ -44,7 +59,7 @@ class RealFileConfigContext implements Context, SnippetAcceptingContext
      */
     public function iShouldGetAHelpfulErrorMessage()
     {
-        throw new PendingException();
+        \PHPUnit_Framework_Assert::assertInstanceOf(RequiredConfigSettingNotFound::class, $this->exceptionThrown);
     }
 
     /**
@@ -52,7 +67,7 @@ class RealFileConfigContext implements Context, SnippetAcceptingContext
      */
     public function iAskWhetherOrNotThisIsTheDevEnvironment()
     {
-        throw new PendingException();
+        $this->result = $this->secretConfigFile->isDev();
     }
 
     /**
@@ -60,21 +75,53 @@ class RealFileConfigContext implements Context, SnippetAcceptingContext
      */
     public function iShouldGetAResponseOfTrue()
     {
-        throw new PendingException();
+        \PHPUnit_Framework_Assert::assertTrue($this->result);
     }
 
     /**
      * @When I try to get the Postgres DSN for the :arg1 service
      */
-    public function iTryToGetThePostgresDsnForTheService($arg1)
+    public function iTryToGetThePostgresDsnForTheService(string $serviceName)
+    {
+        $this->secretConfigFile->dsnForService($serviceName);
+    }
+
+    /**
+     * @Given I have injected the setting :arg1 with the value :arg2
+     */
+    public function iHaveInjectedTheSettingWithTheValue($arg1, $arg2)
     {
         throw new PendingException();
     }
 
     /**
-     * @Then I should get :arg1
+     * @Given I have injected true as a value for isDev()
      */
-    public function iShouldGet($arg1)
+    public function iHaveInjectedTrueAsAValueForIsdev()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given I have injected the DSN :arg1
+     */
+    public function iHaveInjectedTheDsn($arg1)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @When I get the DNS for the service :arg1
+     */
+    public function iGetTheDnsForTheService($arg1)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given I have injected true as a value whether or not we're on dev
+     */
+    public function iHaveInjectedTrueAsAValueWhetherOrNotWeReOnDev()
     {
         throw new PendingException();
     }

@@ -40,4 +40,60 @@ class FakeConfigContext implements Context, SnippetAcceptingContext
     {
         throw new PendingException();
     }
+
+    /**
+     * @When I get the setting :arg1
+     */
+    public function iGetTheSetting($arg1)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then I should get the value :arg1
+     */
+    public function iShouldGetTheValue($arg1)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @When I try to get the setting :arg1
+     */
+    public function iTryToGetTheSetting($arg1)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then I should get a helpful error message
+     */
+    public function iShouldGetAHelpfulErrorMessage()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @When I ask whether or not this is the dev environment
+     */
+    public function iAskWhetherOrNotThisIsTheDevEnvironment()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then I should get a response of true
+     */
+    public function iShouldGetAResponseOfTrue()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given I have injected true as a value whether or not we're on dev
+     */
+    public function iHaveInjectedTrueAsAValueWhetherOrNotWeReOnDev()
+    {
+        throw new PendingException();
+    }
 }

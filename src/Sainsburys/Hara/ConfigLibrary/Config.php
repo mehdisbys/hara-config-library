@@ -8,7 +8,7 @@ interface Config
     /**
      * @throws RequiredConfigSettingNotFound
      */
-    public function setting(string $settingName): string;
+    public function get(string $settingName): string;
 
     /**
      * @throws RequiredConfigSettingNotFound

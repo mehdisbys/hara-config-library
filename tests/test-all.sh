@@ -11,7 +11,7 @@ PHPUNIT_RETURN_CODE=$?
 PHPSPEC_RETURN_CODE=$?
 
 # Behat service-level tests
-./vendor/bin/behat -c tests/behat/behat.yml --suite integrationtesting;
+./vendor/bin/behat -c tests/behat/behat.yml;
 BEHAT_SERVICELEVEL_RETURN_CODE=$?
 
 # Print results so you don't have to scroll
