@@ -19,5 +19,5 @@ Feature: Getting stuff out of the config file
         Then I should get a response of true
 
     Scenario: Getting a Postgres Data Source Name
-        When I try to get the Postgres DSN for the 'auth' service
+        When I get the DNS for the service 'auth'
         Then I should get the value 'pgsql:dbname=auth;host=localhost;user=hara;password=XXXXXX'

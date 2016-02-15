@@ -3,7 +3,6 @@ namespace Sainsburys\Hara\ConfigLibrary\Test\IntegrationTesting;
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
-use Behat\Behat\Tester\Exception\PendingException;
 use Sainsburys\Hara\ConfigLibrary\Config\SecretConfigFile;
 use Sainsburys\Hara\ConfigLibrary\Exception\RequiredConfigSettingNotFound;
 use Sainsburys\Hara\ConfigLibrary\Misc\IniFileParser;
@@ -11,7 +10,7 @@ use Sainsburys\Hara\ConfigLibrary\Misc\IniFileParser;
 class RealFileConfigContext implements Context, SnippetAcceptingContext
 {
     /** @var SecretConfigFile */
-    private $secretConfigFile;
+    private $configObject;
 
     /** @var string */
     private $result;
@@ -25,7 +24,7 @@ class RealFileConfigContext implements Context, SnippetAcceptingContext
     public function theConfigLibraryIsInitialisedWithTheFile(string $filename)
     {
         $iniFileParser = new IniFileParser();
-        $this->secretConfigFile = new SecretConfigFile($filename, $iniFileParser);
+        $this->configObject = new SecretConfigFile($filename, $iniFileParser);
     }
 
     /**
@@ -33,7 +32,7 @@ class RealFileConfigContext implements Context, SnippetAcceptingContext
      */
     public function iGetTheSetting(string $settingKey)
     {
-        $this->result = $this->secretConfigFile->get($settingKey);
+        $this->result = $this->configObject->get($settingKey);
     }
 
     /**
@@ -50,7 +49,7 @@ class RealFileConfigContext implements Context, SnippetAcceptingContext
     public function iTryToGetTheSetting(string $settingKey)
     {
         try {
-            $this->secretConfigFile->get($settingKey);
+            $this->configObject->get($settingKey);
         } catch (\Throwable $exception) {
             $this->exceptionThrown = $exception;
         }
@@ -69,7 +68,7 @@ class RealFileConfigContext implements Context, SnippetAcceptingContext
      */
     public function iAskWhetherOrNotThisIsTheDevEnvironment()
     {
-        $this->result = $this->secretConfigFile->isDev();
+        $this->result = $this->configObject->isDev();
     }
 
     /**
@@ -81,10 +80,10 @@ class RealFileConfigContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @When I try to get the Postgres DSN for the :arg1 service
+     * @When I get the DNS for the service :serviceNickname
      */
-    public function iTryToGetThePostgresDsnForTheService(string $serviceName)
+    public function iGetTheDnsForTheService(string $serviceNickname)
     {
-        $this->result = $this->secretConfigFile->dsnForService($serviceName);
+        $this->result = $this->configObject->dsnForService($serviceNickname);
     }
 }

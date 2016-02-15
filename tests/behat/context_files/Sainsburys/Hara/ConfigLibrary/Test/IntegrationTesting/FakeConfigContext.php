@@ -1,18 +1,33 @@
 <?php
 namespace Sainsburys\Hara\ConfigLibrary\Test\IntegrationTesting;
 
-use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
+use Sainsburys\Hara\ConfigLibrary\Config\FakeConfig;
+use Sainsburys\Hara\ConfigLibrary\Exception\RequiredConfigSettingNotFound;
 
 class FakeConfigContext implements Context, SnippetAcceptingContext
 {
+    /** @var FakeConfig */
+    private $configObject;
+
+    /** @var string */
+    private $result;
+
+    /** @var \Exception|null */
+    private $exceptionThrown;
+
+    public function __construct()
+    {
+        $this->configObject = new FakeConfig();
+    }
+
     /**
      * @Given I have injected the setting :settingKey with the value :settingValue
      */
     public function iHaveInjectedTheSettingWithTheValue(string $settingKey, string $settingValue)
     {
-        throw new PendingException();
+        $this->configObject->set($settingKey, $settingValue);
     }
 
     /**
@@ -20,7 +35,7 @@ class FakeConfigContext implements Context, SnippetAcceptingContext
      */
     public function iHaveInjectedTrueAsAValueWhetherOrNotWeReOnDev()
     {
-        throw new PendingException();
+        $this->configObject->setIsDev(true);
     }
 
     /**
@@ -28,7 +43,7 @@ class FakeConfigContext implements Context, SnippetAcceptingContext
      */
     public function iHaveInjectedTheDsn(string $dsn)
     {
-        throw new PendingException();
+        $this->configObject->setDsn($dsn);
     }
 
     /**
@@ -36,7 +51,16 @@ class FakeConfigContext implements Context, SnippetAcceptingContext
      */
     public function iGetTheDnsForTheService(string $serviceNickname)
     {
-        throw new PendingException();
+        $this->result = $this->secretConfigFile->dsnForService($serviceNickname);
+    }
+
+    /**
+     * @Given the config library is initialised with the file :filename
+     */
+    public function theConfigLibraryIsInitialisedWithTheFile(string $filename)
+    {
+        $iniFileParser = new IniFileParser();
+        $this->secretConfigFile = new SecretConfigFile($filename, $iniFileParser);
     }
 
     /**
@@ -44,15 +68,15 @@ class FakeConfigContext implements Context, SnippetAcceptingContext
      */
     public function iGetTheSetting(string $settingKey)
     {
-        throw new PendingException();
+        $this->result = $this->configObject->get($settingKey);
     }
 
     /**
-     * @Then I should get the value :expectedSettingValue
+     * @Then I should get the value :expectedValue
      */
-    public function iShouldGetTheValue(string $expectedSettingValue)
+    public function iShouldGetTheValue(string $expectedValue)
     {
-        throw new PendingException();
+        \PHPUnit_Framework_Assert::assertEquals($expectedValue, $this->result);
     }
 
     /**
@@ -60,7 +84,11 @@ class FakeConfigContext implements Context, SnippetAcceptingContext
      */
     public function iTryToGetTheSetting(string $settingKey)
     {
-        throw new PendingException();
+        try {
+            $this->configObject->get($settingKey);
+        } catch (\Throwable $exception) {
+            $this->exceptionThrown = $exception;
+        }
     }
 
     /**
@@ -68,7 +96,7 @@ class FakeConfigContext implements Context, SnippetAcceptingContext
      */
     public function iShouldGetAHelpfulErrorMessage()
     {
-        throw new PendingException();
+        \PHPUnit_Framework_Assert::assertInstanceOf(RequiredConfigSettingNotFound::class, $this->exceptionThrown);
     }
 
     /**
@@ -76,7 +104,7 @@ class FakeConfigContext implements Context, SnippetAcceptingContext
      */
     public function iAskWhetherOrNotThisIsTheDevEnvironment()
     {
-        throw new PendingException();
+        $this->result = $this->secretConfigFile->isDev();
     }
 
     /**
@@ -84,6 +112,6 @@ class FakeConfigContext implements Context, SnippetAcceptingContext
      */
     public function iShouldGetAResponseOfTrue()
     {
-        throw new PendingException();
+        \PHPUnit_Framework_Assert::assertTrue($this->result);
     }
 }
