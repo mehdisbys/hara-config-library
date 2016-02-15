@@ -19,8 +19,11 @@ class SecretConfigFileSpec extends ObjectBehavior
 
         $iniFileParser->parseIniFile('path.ini')->willReturn(
             [
-                'DB_USERNAME' => 'hara',
-                'ENVIRONMENT' => 'dev',
+                'ENVIRONMENT'      => 'dev',
+                'DB_USERNAME'      => 'username',
+                'DB_PASSWORD'      => 'password',
+                'DB_AUTH_DATABASE' => 'database-name',
+                'DB_HOST'          => 'hostname',
             ]
         );
     }
@@ -32,7 +35,7 @@ class SecretConfigFileSpec extends ObjectBehavior
 
     function it_can_get_a_setting()
     {
-        $this->get('DB_USERNAME')->shouldBe('hara');
+        $this->get('DB_USERNAME')->shouldBe('username');
     }
 
     function it_throws_an_exception_if_the_setting_doesnt_exist()
@@ -43,5 +46,12 @@ class SecretConfigFileSpec extends ObjectBehavior
     function it_can_tell_if_its_on_dev()
     {
         $this->isDev()->shouldBe(true);
+    }
+
+    function it_can_get_you_a_data_source_name()
+    {
+        $this
+            ->dsnForService('auth')
+            ->shouldBe("pgsql:dbname=database-name;host=hostname;user=username;password=password");
     }
 }

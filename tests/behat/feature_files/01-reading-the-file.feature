@@ -17,7 +17,7 @@ Feature: Getting stuff out of the config file
     Scenario: Finding out whether we're on dev or not
         When I ask whether or not this is the dev environment
         Then I should get a response of true
-    @wip
+
     Scenario: Getting a Postgres Data Source Name
         When I try to get the Postgres DSN for the 'auth' service
-        Then I should get the value 'pgsql:hostname=host;'
+        Then I should get the value 'pgsql:dbname=auth;host=localhost;user=hara;password=XXXXXX'

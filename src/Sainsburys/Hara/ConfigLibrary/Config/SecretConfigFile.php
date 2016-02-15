@@ -36,7 +36,13 @@ class SecretConfigFile implements Config
      */
     public function dsnForService(string $serviceNickname): string
     {
-        return 'pgsql:dbname=' . $database . ';host=' . $hostname . ';user='.$username . ';password=' . $password;
+        $username = $this->get('DB_USERNAME');
+        $hostname = $this->get('DB_HOST');
+        $password = $this->get('DB_PASSWORD');
+
+        $databaseName = $this->get('DB_' . strtoupper($serviceNickname) . '_DATABASE');
+
+        return 'pgsql:dbname=' . $databaseName . ';host=' . $hostname . ';user='.$username . ';password=' . $password;
     }
 
     /**
