@@ -4,6 +4,7 @@ namespace Sainsburys\Hara\ConfigLibrary\Test\IntegrationTesting;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Sainsburys\Hara\ConfigLibrary\Config\SecretConfigFile;
+use Sainsburys\Hara\ConfigLibrary\Exception\ConfigFileNotReadable;
 use Sainsburys\Hara\ConfigLibrary\Exception\RequiredConfigSettingNotFound;
 use Sainsburys\Hara\ConfigLibrary\Misc\IniFileParser;
 
@@ -85,5 +86,13 @@ class RealFileConfigContext implements Context, SnippetAcceptingContext
     public function iGetTheDnsForTheService(string $serviceNickname)
     {
         $this->result = $this->configObject->dsnForService($serviceNickname);
+    }
+
+    /**
+     * @Then I should get an error message telling me the file is missing
+     */
+    public function iShouldGetAnErrorMessageTellingMeTheFileIsMissing()
+    {
+        \PHPUnit_Framework_Assert::assertInstanceOf(ConfigFileNotReadable::class, $this->exceptionThrown);
     }
 }

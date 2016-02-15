@@ -2,6 +2,7 @@
 namespace Sainsburys\Hara\ConfigLibrary\Config;
 
 use Sainsburys\Hara\ConfigLibrary\Config;
+use Sainsburys\Hara\ConfigLibrary\Exception\ConfigFileNotReadable;
 use Sainsburys\Hara\ConfigLibrary\Exception\RequiredConfigSettingNotFound;
 use Sainsburys\Hara\ConfigLibrary\Misc\IniFileParserInterface;
 

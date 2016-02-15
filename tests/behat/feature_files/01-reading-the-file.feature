@@ -21,3 +21,8 @@ Feature: Getting stuff out of the config file
     Scenario: Getting a Postgres Data Source Name
         When I get the DNS for the service 'auth'
         Then I should get the value 'pgsql:dbname=auth;host=localhost;user=hara;password=XXXXXX'
+
+    Scenario: File doesn't exist
+        Given the config library is initialised with the file 'this-file-doesnt-exist.ini'
+        When I try to get the setting 'WHATEVER'
+        Then I should get an error message telling me the file is missing
