@@ -7,60 +7,58 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 
 class FakeConfigContext implements Context, SnippetAcceptingContext
 {
-
-
     /**
-     * @Given I have injected the setting :arg1 with the value :arg2
+     * @Given I have injected the setting :settingKey with the value :settingValue
      */
-    public function iHaveInjectedTheSettingWithTheValue($arg1, $arg2)
+    public function iHaveInjectedTheSettingWithTheValue(string $settingKey, string $settingValue)
     {
         throw new PendingException();
     }
 
     /**
-     * @Given I have injected true as a value for isDev()
+     * @Given I have injected true as a value whether or not we're on dev
      */
-    public function iHaveInjectedTrueAsAValueForIsdev()
+    public function iHaveInjectedTrueAsAValueWhetherOrNotWeReOnDev()
     {
         throw new PendingException();
     }
 
     /**
-     * @Given I have injected the DSN :arg1
+     * @Given I have injected the DSN :dsn
      */
-    public function iHaveInjectedTheDsn($arg1)
+    public function iHaveInjectedTheDsn(string $dsn)
     {
         throw new PendingException();
     }
 
     /**
-     * @When I get the DNS for the service :arg1
+     * @When I get the DNS for the service :serviceNickname
      */
-    public function iGetTheDnsForTheService($arg1)
+    public function iGetTheDnsForTheService(string $serviceNickname)
     {
         throw new PendingException();
     }
 
     /**
-     * @When I get the setting :arg1
+     * @When I get the setting :settingKey
      */
-    public function iGetTheSetting($arg1)
+    public function iGetTheSetting(string $settingKey)
     {
         throw new PendingException();
     }
 
     /**
-     * @Then I should get the value :arg1
+     * @Then I should get the value :expectedSettingValue
      */
-    public function iShouldGetTheValue($arg1)
+    public function iShouldGetTheValue($expectedSettingValue)
     {
         throw new PendingException();
     }
 
     /**
-     * @When I try to get the setting :arg1
+     * @When I try to get the setting :settingKey
      */
-    public function iTryToGetTheSetting($arg1)
+    public function iTryToGetTheSetting(string $settingKey)
     {
         throw new PendingException();
     }
@@ -85,14 +83,6 @@ class FakeConfigContext implements Context, SnippetAcceptingContext
      * @Then I should get a response of true
      */
     public function iShouldGetAResponseOfTrue()
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Given I have injected true as a value whether or not we're on dev
-     */
-    public function iHaveInjectedTrueAsAValueWhetherOrNotWeReOnDev()
     {
         throw new PendingException();
     }
