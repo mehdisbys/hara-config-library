@@ -4,17 +4,14 @@
     "license": "proprietary",
 
     "require": {
-        "php":                                "^7.0.0",
-        "sainsburys/sainsburys-http-service": "^2.2",
-        "ultra-lite/container":               "^2.0.0",
-        "psr/http-message":                   "^1.0"
+        "php":                  "^7.0.0",
+        "ultra-lite/container": "^2.0.0"
     },
 
     "require-dev": {
-        "behat/behat":                       "~3.1.0rc1",
-        "phpspec/phpspec":                   "~2.4.1",
-        "phpunit/phpunit":                   "^5.1.3",
-        "henrikbjorn/phpspec-code-coverage": "^2.0"
+        "behat/behat":     "~3.1.0rc1",
+        "phpspec/phpspec": "~2.4.1",
+        "phpunit/phpunit": "^5.2.0"
     },
 
     "autoload": {
