@@ -4,9 +4,9 @@ use Interop\Container\ContainerInterface as Container;
 
 return [
 
-    'sainsburys.hara.xxxxxx.controllers.smoketest' =>
+    'sainsburys.hara.config-library.controllers.smoketest' =>
         function (Container $container) {
-            return new \Sainsburys\Hara\Xxxxxx\Controller\SmokeTestController();
+            return new \Sainsburys\Hara\ConfigLibrary\Controller\SmokeTestController();
         },
 
 ];

@@ -1,8 +1,8 @@
 <?php
-namespace Sainsburys\Hara\Xxxxxx\Test;
+namespace Sainsburys\Hara\ConfigLibrary\Test;
 
 use UltraLite\Container\Container;
-use Sainsburys\Hara\Xxxxxx\Controller\SmokeTestController;
+use Sainsburys\Hara\ConfigLibrary\Controller\SmokeTestController;
 
 class DiConfigTest extends \PHPUnit_Framework_TestCase
 {
@@ -27,7 +27,7 @@ class DiConfigTest extends \PHPUnit_Framework_TestCase
     public function provideControllers()
     {
         return [
-            ['sainsburys.hara.xxxxxx.controllers.smoketest', SmokeTestController::class],
+            ['sainsburys.hara.config-library.controllers.smoketest', SmokeTestController::class],
         ];
     }
 }

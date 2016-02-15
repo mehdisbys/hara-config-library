@@ -1,5 +1,5 @@
 <?php
-namespace Sainsburys\Hara\Xxxxxx\Service\Test;
+namespace Sainsburys\Hara\ConfigLibrary\Service\Test;
 
 class RoutingConfigTest extends \PHPUnit_Framework_TestCase
 {

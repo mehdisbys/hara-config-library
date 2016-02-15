@@ -1,5 +1,5 @@
 <?php
-namespace Sainsburys\Hara\Xxxxxx\Test\IntegrationTesting;
+namespace Sainsburys\Hara\ConfigLibrary\Test\IntegrationTesting;
 
 use Behat\Behat\Context\Context;
 use UltraLite\Container\Container;

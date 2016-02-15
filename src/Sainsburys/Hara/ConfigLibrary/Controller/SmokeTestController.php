@@ -1,5 +1,5 @@
 <?php
-namespace Sainsburys\Hara\Xxxxxx\Controller;
+namespace Sainsburys\Hara\ConfigLibrary\Controller;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

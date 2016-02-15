@@ -1,5 +1,5 @@
 {
-    "name": "sainsburys/hara-xxxxxx",
+    "name": "sainsburys/hara-config-library",
 
     "license": "proprietary",
 
@@ -19,13 +19,13 @@
 
     "autoload": {
         "psr-0": {
-            "Sainsburys\\Hara\\Xxxxxx\\": "src/"
+            "Sainsburys\\Hara\\ConfigLibrary\\": "src/"
         }
     },
 
     "autoload-dev": {
         "psr-0": {
-            "Sainsburys\\Hara\\Xxxxxx\\Test\\": "tests/behat/context_files"
+            "Sainsburys\\Hara\\ConfigLibrary\\Test\\": "tests/behat/context_files"
         }
     }
 }

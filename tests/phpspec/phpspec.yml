@@ -1,7 +1,7 @@
 suites:
 
     src:
-        namespace:   Sainsburys\Hara\Xxxxxx
+        namespace:   Sainsburys\Hara\ConfigLibrary
         spec_prefix: SainsburysHaraSpec
         src_path:    src/
         spec_path:   tests/phpspec/

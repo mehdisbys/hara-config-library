@@ -1,5 +1,5 @@
 <?php
-namespace SainsburysHaraSpec\Sainsburys\Hara\Xxxxxx\Controller;
+namespace SainsburysHaraSpec\Sainsburys\Hara\ConfigLibrary\Controller;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -11,7 +11,7 @@ class SmokeTestControllerSpec extends ObjectBehavior
 {
     function it_is_initialisable()
     {
-        $this->shouldHaveType('Sainsburys\Hara\Xxxxxx\Controller\SmokeTestController');
+        $this->shouldHaveType('Sainsburys\Hara\ConfigLibrary\Controller\SmokeTestController');
     }
 
     function it_passes_when_called()

@@ -7,4 +7,4 @@ default:
                 features: %paths.base%/feature_files/
             filters: { tags: ~wip }
             contexts:
-                - \Sainsburys\Hara\Xxxxxx\Test\IntegrationTesting\SmokeTestContext
+                - \Sainsburys\Hara\ConfigLibrary\Test\IntegrationTesting\SmokeTestContext
