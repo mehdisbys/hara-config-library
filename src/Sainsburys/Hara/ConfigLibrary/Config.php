@@ -18,5 +18,5 @@ interface Config
     /**
      * @throws RequiredConfigSettingNotFound
      */
-    public function isDev(): string;
+    public function isDev(): bool;
 }

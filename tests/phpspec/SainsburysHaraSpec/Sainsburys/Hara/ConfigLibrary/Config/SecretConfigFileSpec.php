@@ -20,6 +20,7 @@ class SecretConfigFileSpec extends ObjectBehavior
         $iniFileParser->parseIniFile('path.ini')->willReturn(
             [
                 'DB_USERNAME' => 'hara',
+                'ENVIRONMENT' => 'dev',
             ]
         );
     }
@@ -37,5 +38,10 @@ class SecretConfigFileSpec extends ObjectBehavior
     function it_throws_an_exception_if_the_setting_doesnt_exist()
     {
         $this->shouldThrow(RequiredConfigSettingNotFound::class)->during('get', ['THING-THAT-DOESNT-EXIST']);
+    }
+
+    function it_can_tell_if_its_on_dev()
+    {
+        $this->isDev()->shouldBe(true);
     }
 }

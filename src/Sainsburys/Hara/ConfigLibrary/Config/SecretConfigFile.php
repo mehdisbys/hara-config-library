@@ -1,11 +1,11 @@
 <?php
 namespace Sainsburys\Hara\ConfigLibrary\Config;
 
-use Sainsburys\Hara\ConfigLibrary\Exception\ConfigFileNotReadable;
+use Sainsburys\Hara\ConfigLibrary\Config;
 use Sainsburys\Hara\ConfigLibrary\Exception\RequiredConfigSettingNotFound;
 use Sainsburys\Hara\ConfigLibrary\Misc\IniFileParserInterface;
 
-class SecretConfigFile
+class SecretConfigFile implements Config
 {
     private $pathToSettingsFile;
 
@@ -42,9 +42,9 @@ class SecretConfigFile
     /**
      * @throws RequiredConfigSettingNotFound
      */
-    public function isDev(): string
+    public function isDev(): bool
     {
-
+        return $this->get('ENVIRONMENT') == 'dev';
     }
 
     private function fileContents(): array
