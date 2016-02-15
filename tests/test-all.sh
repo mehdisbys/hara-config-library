@@ -11,11 +11,16 @@ PHPSPEC_RETURN_CODE=$?
 BEHAT_SERVICELEVEL_RETURN_CODE=$?
 
 # Print results so you don't have to scroll
+
+echo;
+
 echo -n 'PHPSpec return code:             ';
 echo $PHPSPEC_RETURN_CODE;
 
 echo -n 'Behat serivce-level return code: ';
 echo $BEHAT_SERVICELEVEL_RETURN_CODE;
+
+echo;
 
 # Work out an exit code, and exit
 TOTAL_EXIT_CODE=$((PHPSPEC_RETURN_CODE + BEHAT_SERVICELEVEL_RETURN_CODE))
