@@ -12,7 +12,12 @@ class IniFileParser implements IniFileParserInterface
             throw new ConfigFileNotReadable();
         }
 
-        $contents = parse_ini_file($path);
+        $fileContents = file_get_contents($path);
+
+        // Remove any lines which start with a hash comment
+        $fileContents = preg_replace('/^\s*#.*$/m', '', $fileContents);
+
+        $contents = parse_ini_string($fileContents);
 
         if (!$contents) {
             throw new ConfigFileNotValid();

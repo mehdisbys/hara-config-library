@@ -31,3 +31,8 @@ Feature: Getting stuff out of the config file
         Given the config library is initialised with the file 'this-file-doesnt-exist.ini'
         When I try to get the setting 'WHATEVER'
         Then I should get an error message telling me the file is missing
+
+    Scenario: Reading a Config File where Hash marks (#) are used for comments
+        Given the config library is initialised with the file 'tests/fixtures/config-file-with-hash-comment.ini'
+        When I ask whether or not this is the dev environment
+        Then I should get a response of true
