@@ -11,9 +11,10 @@
     },
 
     "require-dev": {
-        "behat/behat":     "~3.1.0rc1",
-        "phpspec/phpspec": "~2.4.1",
-        "phpunit/phpunit": "^5.2.0"
+        "behat/behat":                       "~3.1.0rc1",
+        "phpspec/phpspec":                   "~2.4.1",
+        "phpunit/phpunit":                   "^5.2.0",
+        "henrikbjorn/phpspec-code-coverage": "^2.0"
     },
 
     "autoload": {
