@@ -18,6 +18,11 @@ Feature: Getting stuff out of the config file
         When I ask whether or not this is the dev environment
         Then I should get a response of true
 
+    Scenario: Confirming we're not on dev by default
+        Given the config library is initialised with the file 'tests/fixtures/example-production-config-file.ini'
+        When I ask whether or not this is the dev environment
+        Then I should get a response of false
+
     Scenario: Getting a Postgres Data Source Name
         When I get the DNS for the service 'auth'
         Then I should get the value 'pgsql:dbname=auth;host=localhost;user=hara;password=XXXXXX'

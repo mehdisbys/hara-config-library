@@ -39,6 +39,14 @@ class FakeConfigContext implements Context, SnippetAcceptingContext
     }
 
     /**
+     * @Given I have injected false as a value whether or not we're on dev
+     */
+    public function iHaveInjectedFalseAsAValueWhetherOrNotWeReOnDev()
+    {
+        $this->configObject->setIsDev(false);
+    }
+
+    /**
      * @Given I have injected the DSN :dsn
      */
     public function iHaveInjectedTheDsn(string $dsn)
@@ -92,10 +100,15 @@ class FakeConfigContext implements Context, SnippetAcceptingContext
 
     /**
      * @When I ask whether or not this is the dev environment
+     * @When I try to ask whether or not this is the dev environment
      */
     public function iAskWhetherOrNotThisIsTheDevEnvironment()
     {
-        $this->result = $this->configObject->isDev();
+        try {
+            $this->result = $this->configObject->isDev();
+        } catch (\Throwable $exception) {
+            $this->exceptionThrown = $exception;
+        }
     }
 
     /**
@@ -104,5 +117,13 @@ class FakeConfigContext implements Context, SnippetAcceptingContext
     public function iShouldGetAResponseOfTrue()
     {
         \PHPUnit_Framework_Assert::assertTrue($this->result);
+    }
+
+    /**
+     * @Then I should get a response of false
+     */
+    public function iShouldGetAResponseOfFalse()
+    {
+        \PHPUnit_Framework_Assert::assertFalse($this->result);
     }
 }

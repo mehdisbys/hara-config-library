@@ -81,6 +81,14 @@ class RealFileConfigContext implements Context, SnippetAcceptingContext
     }
 
     /**
+     * @Then I should get a response of false
+     */
+    public function iShouldGetAResponseOfFalse()
+    {
+        \PHPUnit_Framework_Assert::assertFalse($this->result);
+    }
+
+    /**
      * @When I get the DNS for the service :serviceNickname
      */
     public function iGetTheDnsForTheService(string $serviceNickname)

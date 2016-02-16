@@ -17,6 +17,15 @@ Feature: Mocking the config file for unit tests
         When I ask whether or not this is the dev environment
         Then I should get a response of true
 
+    Scenario: Confirming we're not on dev
+        Given I have injected false as a value whether or not we're on dev
+        When I ask whether or not this is the dev environment
+        Then I should get a response of false
+
+    Scenario: Ensuring setting dev is required
+        When I try to ask whether or not this is the dev environment
+        Then I should get a helpful error message
+
     Scenario: Faking a Data Source Name
         Given I have injected the DSN 'sqlite:/tmp/sqlite.sq3'
         When I get the DNS for the service 'service-nickname'
