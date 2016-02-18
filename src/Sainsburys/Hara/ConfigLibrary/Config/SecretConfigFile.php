@@ -34,10 +34,16 @@ class SecretConfigFile implements Config
     /**
      * @throws RequiredConfigSettingNotFound
      */
-    public function dsnForService(string $serviceNickname): string
+    public function dsnForService(string $serviceNickname, string $alternative = null): string
     {
+        if (empty($alternative)) {
+            $hostVariable = 'DB_HOST';
+        } else {
+            $hostVariable = 'DB_' . $alternative . '_HOST';
+        }
+
         $username = $this->get('DB_USERNAME');
-        $hostname = $this->get('DB_HOST');
+        $hostname = $this->get($hostVariable);
         $password = $this->get('DB_PASSWORD');
 
         $databaseName = $this->get('DB_' . strtoupper($serviceNickname) . '_DATABASE');
