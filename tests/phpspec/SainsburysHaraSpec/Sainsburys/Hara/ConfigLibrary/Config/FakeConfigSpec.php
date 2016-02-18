@@ -39,4 +39,14 @@ class FakeConfigSpec extends ObjectBehavior
         $this->setDsn('dsn-value');
         $this->dsnForService('anything')->shouldBe('dsn-value');
     }
+
+    function it_throws_an_exception_if_dsn_has_not_been_set_before_accessing_it()
+    {
+        $this->shouldThrow(RequiredConfigSettingNotFound::class)->during('dsnForService', ['someService']);
+    }
+
+    function it_throws_an_exception_if_dev_is_not_explicitly_set_before_accessing_it()
+    {
+        $this->shouldThrow(RequiredConfigSettingNotFound::class)->during('isDev', ['someService']);
+    }
 }
