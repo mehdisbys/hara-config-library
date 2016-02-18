@@ -9,7 +9,7 @@ class IniFileParser implements IniFileParserInterface
     public function parseIniFile(string $path): array
     {
         if (!is_readable($path)) {
-            throw new ConfigFileNotReadable();
+            throw new ConfigFileNotReadable($path);
         }
 
         $fileContents = file_get_contents($path);
