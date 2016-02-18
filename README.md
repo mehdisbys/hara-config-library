@@ -13,11 +13,12 @@ contains this:
 
 ```php
 public function get(string $settingName): string;
-public function dsnForService(string $serviceNickname): string;
+public function dsnForService(string $serviceNickname, string $alternative = null): string;
 public function isDev(): bool;
 ```
 
 The method `dsnForService()` returns Data Source Names, suitable for initialising PDO objects.
+The optional `$alternative` parameter is used to select a configuration key other than the default `"DB_HOST"`. If given, `$alternative` is inserted between `DB`and `HOST` with underscores separating the parts; e.g. supplying `$alternative = "AWS"` will use the host defined by the `"DB_AWS_HOST"` configuration key.
 
 
 ## Use in Test Automation
