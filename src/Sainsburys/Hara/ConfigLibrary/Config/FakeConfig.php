@@ -3,9 +3,12 @@ namespace Sainsburys\Hara\ConfigLibrary\Config;
 
 use Sainsburys\Hara\ConfigLibrary\Config;
 use Sainsburys\Hara\ConfigLibrary\Exception\RequiredConfigSettingNotFound;
+use Sainsburys\Hara\ConfigLibrary\Config\Traits\DsnComponents;
 
 class FakeConfig implements Config
 {
+    use DsnComponents;
+
     /** @var string[] */
     private $basicSettings = [];
 

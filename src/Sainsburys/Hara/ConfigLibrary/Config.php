@@ -19,4 +19,9 @@ interface Config
      * @throws RequiredConfigSettingNotFound
      */
     public function isDev(): bool;
+
+    /**
+     * @throws RequiredConfigSettingNotFound
+     */
+    public function dsnComponentsForService(string $serviceNickname, string $alternative = null): array;
 }

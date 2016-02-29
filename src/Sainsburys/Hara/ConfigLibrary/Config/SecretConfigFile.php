@@ -4,9 +4,12 @@ namespace Sainsburys\Hara\ConfigLibrary\Config;
 use Sainsburys\Hara\ConfigLibrary\Config;
 use Sainsburys\Hara\ConfigLibrary\Exception\RequiredConfigSettingNotFound;
 use Sainsburys\Hara\ConfigLibrary\Misc\IniFileParserInterface;
+use Sainsburys\Hara\ConfigLibrary\Config\Traits\DsnComponents;
 
 class SecretConfigFile implements Config
 {
+    use DsnComponents;
+
     private $pathToSettingsFile;
 
     private $iniFileParser;
