@@ -13,7 +13,7 @@ interface Config
     /**
      * @throws RequiredConfigSettingNotFound
      */
-    public function dsnForService(string $serviceNickname): string;
+    public function dsnForService(string $serviceNickname, string $alternative = null): string;
 
     /**
      * @throws RequiredConfigSettingNotFound
