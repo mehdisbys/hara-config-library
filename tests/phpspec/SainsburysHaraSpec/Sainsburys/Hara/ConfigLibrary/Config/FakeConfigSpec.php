@@ -30,13 +30,19 @@ class FakeConfigSpec extends ObjectBehavior
 
     function it_can_tell_whether_its_on_dev()
     {
+        // ARRANGE
         $this->setIsDev(true);
+
+        // ACT & ASSERT
         $this->isDev()->shouldBe(true);
     }
 
     function it_supports_getting_and_setting_a_dsn()
     {
+        // ARRANGE
         $this->setDsn('dsn-value');
+
+        // ACT & ASSERT
         $this->dsnForService('anything')->shouldBe('dsn-value');
     }
 
@@ -48,5 +54,56 @@ class FakeConfigSpec extends ObjectBehavior
     function it_throws_an_exception_if_dev_is_not_explicitly_set_before_accessing_it()
     {
         $this->shouldThrow(RequiredConfigSettingNotFound::class)->during('isDev', ['someService']);
+    }
+
+    function it_can_give_you_the_components_of_a_fake_dsn()
+    {
+        // ARRANGE
+        $this->setDsn('pgsql:dbname=database-name;host=hostname;user=username;password=password');
+
+        // ACT & ASSERT
+        $this
+            ->dsnComponentsForService('foobar')
+            ->shouldBe(
+                [
+                    'adapter'  => 'pgsql',
+                    'dbname'   => 'database-name',
+                    'host'     => 'hostname',
+                    'user'     => 'username',
+                    'password' => 'password',
+                ]
+            );
+    }
+
+    function it_can_give_you_the_components_of_a_fake_sqlite_dsn()
+    {
+        // ARRANGE
+        $this->setDsn('sqlite:/tmp/sqlite.sq3');
+
+        // ACT & ASSERT
+        $this
+            ->dsnComponentsForService('foobar')
+            ->shouldBe(
+                [
+                    'adapter'  => 'sqlite',
+                    'path'     => '/tmp/sqlite.sq3',
+                ]
+            );
+    }
+
+    function it_can_give_you_the_components_of_a_fake_sqlite_memory_dsn()
+    {
+        // ARRANGE
+        $this->setDsn('sqlite::memory:');
+
+        // ACT & ASSERT
+        $this
+            ->dsnComponentsForService('foobar')
+            ->shouldBe(
+                [
+                    'adapter'  => 'sqlite',
+                    'path'     => ':memory:',
+                ]
+            );
     }
 }

@@ -68,4 +68,46 @@ class SecretConfigFileSpec extends ObjectBehavior
             ->dsnForService('auth', 'OTHER')
             ->shouldBe("pgsql:dbname=database-name;host=db.example.com;user=username;password=password");
     }
+
+    function it_can_get_you_the_data_source_name_components()
+    {
+        $this
+            ->dsnComponentsForService('auth')
+            ->shouldBe(
+                [
+                    'adapter'  => 'pgsql',
+                    'dbname'   => 'database-name',
+                    'host'     => 'hostname',
+                    'user'     => 'username',
+                    'password' => 'password',
+                ]
+            );
+    }
+
+    function it_can_get_you_different_data_source_name_components_with_an_optional_hint()
+    {
+        $this
+            ->dsnComponentsForService('auth', 'AWS')
+            ->shouldBe(
+                [
+                    'adapter'  => 'pgsql',
+                    'dbname'   => 'database-name',
+                    'host'     => 'rds.amazon.com',
+                    'user'     => 'username',
+                    'password' => 'password',
+                ]
+            );
+
+        $this
+            ->dsnComponentsForService('auth', 'OTHER')
+            ->shouldBe(
+                [
+                    'adapter'  => 'pgsql',
+                    'dbname'   => 'database-name',
+                    'host'     => 'db.example.com',
+                    'user'     => 'username',
+                    'password' => 'password',
+                ]
+            );
+    }
 }
